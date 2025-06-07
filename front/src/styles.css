@@ -1,0 +1,168 @@
+/* Globalne */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  background: #fff; color: #333;
+  line-height: 1.5;
+}
+
+/* Kontener */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* Nagłówek */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 2px solid #d2c2e1;
+}
+.header__logo {
+  font-size: 1.8rem;
+  color: #8b78c4;
+  text-decoration: none;
+  font-weight: bold;
+}
+.header__search {
+  flex: 1;
+  margin: 0 24px;
+}
+.header__search input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 2px solid #d2c2e1;
+}
+.header__menu {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.header__menu button {
+  color: #8b78c4;
+  font-weight: bold;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.header__dropdown {
+  position: relative;
+}
+.header__dropdown-content {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: #fff;
+  border: 1px solid #d2c2e1;
+  border-radius: 8px;
+  padding: 8px 0;
+  /* display: none; */
+}
+/* .header__dropdown:hover .header__dropdown-content {
+  display: block;
+} */
+.header__dropdown-content a {
+  display: block;
+  padding: 8px 16px;
+  color: #8b78c4;
+  text-decoration: none;
+}
+.header__dropdown-content a:hover {
+  background: #f5f5f5;
+}
+
+/* Karta kota */
+.cat-card {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 24px 0;
+  border: 2px solid #d2c2e1;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.cat-card__img {
+  flex: 1 1 300px;
+  max-width: 400px;
+  object-fit: cover;
+}
+.cat-card__info {
+  flex: 1 1 300px;
+  padding: 24px;
+}
+.cat-card__info h2 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+.cat-card__info p {
+  margin: 6px 0;
+  font-size: 1rem;
+}
+.cat-card__info .price {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 16px 0;
+}
+.cat-card__info .reserve-btn {
+  background: #8b78c4;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.cat-card__info .reserve-btn:hover {
+  background: #b39ddb;
+}
+
+/* Success */
+.success {
+  text-align: center;
+  padding: 64px 16px;
+}
+.success h1 {
+  font-size: 2rem;
+  color: #28a745;
+  margin-bottom: 16px;
+}
+.success a {
+  display: inline-block;
+  background: #8b78c4;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+}
+.success a:hover {
+  background: #b39ddb;
+}
+
+/* Rezerwacje */
+.reservations {
+  padding: 24px;
+}
+.reservations h1 {
+  margin-bottom: 16px;
+  color: #8b78c4;
+}
+.reservations .item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 2px solid #d2c2e1;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.reservations .item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.reservations .item .info {
+  flex: 1;
+}
