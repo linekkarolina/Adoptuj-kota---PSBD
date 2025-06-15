@@ -23,10 +23,25 @@ public class KotController {
     @Autowired
     private RasaRepository rasaRepo;
 
-    // ✅ ZWRACA WSZYSTKIE KOTY
+    // ✅ ZWRACA WSZYSTKIE KOTY i resetuje rezerwacje po 15 minutach
     @GetMapping("/koty")
     public List<KotDTO> getWszystkieKoty() {
         List<Kot> koty = kotRepo.findAll();
+        Date teraz = new Date();
+
+        for (Kot kot : koty) {
+            if ("zarezerwowany".equalsIgnoreCase(kot.getStatus())
+                    && kot.getCzasRezerwacji() != null) {
+
+                long roznicaMillis = teraz.getTime() - kot.getCzasRezerwacji().getTime();
+
+                if (roznicaMillis >= 15 * 60 * 1000) { // 15 minut
+                    kot.setStatus("dostępny");
+                    kot.setCzasRezerwacji(null);
+                    kotRepo.save(kot);
+                }
+            }
+        }
 
         return koty.stream().map(kot -> {
             KotDTO dto = new KotDTO();
@@ -51,7 +66,7 @@ public class KotController {
         }).toList();
     }
 
-    // ✅ ZWRACA JEDNEGO KOTA (opcjonalnie)
+    // ✅ ZWRACA JEDNEGO KOTA
     @GetMapping("/kot")
     public KotDTO getPierwszyKot() {
         Optional<Kot> kotOpt = kotRepo.findAll().stream().findFirst();
@@ -92,7 +107,7 @@ public class KotController {
         Kot kot = optionalKot.get();
         Date teraz = new Date();
 
-        if (kot.getCzasRezerwacji() != null) {
+        if ("zarezerwowany".equalsIgnoreCase(kot.getStatus()) && kot.getCzasRezerwacji() != null) {
             long roznicaMillis = teraz.getTime() - kot.getCzasRezerwacji().getTime();
             if (roznicaMillis < 15 * 60 * 1000) {
                 return ResponseEntity.status(HttpStatus.CONFLICT)
